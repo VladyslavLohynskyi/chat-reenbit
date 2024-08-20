@@ -1,5 +1,5 @@
 namespace NodeJS {
-  interface ProcessEnv {
-    PORT: string;
-  }
+   interface ProcessEnv {
+      PORT: string;
+   }
 }
