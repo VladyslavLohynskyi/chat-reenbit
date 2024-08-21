@@ -26,11 +26,20 @@ class chatController {
    }
 
    async delete(req: Request, res: Response) {
-      const { id } = req.params;
-      const chat = await ChatService.deleteChat(id);
+      const { chatId } = req.params;
+      const chat = await ChatService.deleteChat(chatId);
       res.json({
          message: 'Chat deleted',
          chat,
+      });
+   }
+
+   async getUserChats(req: Request, res: Response) {
+      const { userId } = req.params;
+      const chats = await ChatService.getChatsByUserId(userId);
+      res.json({
+         message: 'Chats is found',
+         chats,
       });
    }
 }
