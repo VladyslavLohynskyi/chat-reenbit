@@ -23,6 +23,13 @@ class ChatService {
       const chat = await ChatModel.findOneAndDelete({ _id: id });
       return chat;
    }
+
+   async getChatsByUserId(userId: string) {
+      const chats = await ChatModel.find({
+         $or: [{ user1: userId }, { user2: userId }],
+      });
+      return chats;
+   }
 }
 
 export default new ChatService();
