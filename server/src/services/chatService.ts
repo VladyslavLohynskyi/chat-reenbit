@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import ChatModel from '../models/chatModel';
 
 class ChatService {
@@ -25,9 +26,32 @@ class ChatService {
    }
 
    async getChatsByUserId(userId: string) {
-      const chats = await ChatModel.find({
-         $or: [{ user1: userId }, { user2: userId }],
-      });
+      const chats = await ChatModel.aggregate([
+         {
+            $match: {
+               $or: [
+                  { user1: new ObjectId(userId) },
+                  { user2: new ObjectId(userId) },
+               ],
+            },
+         },
+         {
+            $lookup: {
+               from: 'users',
+               localField: 'user1',
+               foreignField: '_id',
+               as: 'user1',
+            },
+         },
+         {
+            $lookup: {
+               from: 'users',
+               localField: 'user2',
+               foreignField: '_id',
+               as: 'user2',
+            },
+         },
+      ]);
       return chats;
    }
 }
