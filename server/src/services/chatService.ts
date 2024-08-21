@@ -19,6 +19,10 @@ class ChatService {
 
       throw new Error('Two users are the same');
    }
+   async deleteChat(id: string) {
+      const chat = await ChatModel.findOneAndDelete({ _id: id });
+      return chat;
+   }
 }
 
 export default new ChatService();
