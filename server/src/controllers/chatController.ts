@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { IUser } from '../models/userModel';
 import UserService from '../services/userService';
 import ChatService from '../services/chatService';
-import ChatModel from '../models/chatModel';
 
 interface IChatControllerCreateRequest extends Request {
    body: {
@@ -20,8 +19,17 @@ class chatController {
          user2._id.toString(),
       );
       return res.json({
-         message: 'Users created',
+         message: 'Chat created',
          users: [user1, user2],
+         chat,
+      });
+   }
+
+   async delete(req: Request, res: Response) {
+      const { id } = req.params;
+      const chat = await ChatService.deleteChat(id);
+      res.json({
+         message: 'Chat deleted',
          chat,
       });
    }
