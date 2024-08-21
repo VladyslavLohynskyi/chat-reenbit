@@ -22,6 +22,14 @@ class messageController {
          messageInfo,
       });
    }
+   async getChatMessages(req: Request, res: Response) {
+      const { chatId } = req.params;
+      const messages = await MessageService.getMessagesByChatId(chatId);
+      return res.json({
+         message: 'Messages is found',
+         messages,
+      });
+   }
 }
 
 export default new messageController();
