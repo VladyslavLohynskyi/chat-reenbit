@@ -10,6 +10,10 @@ class UserService {
          return createdUser;
       }
    }
+   async getUserInfoById(userId: string) {
+      const user = await UserModel.findById(userId);
+      return user;
+   }
 }
 
 export default new UserService();
