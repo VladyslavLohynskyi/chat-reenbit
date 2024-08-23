@@ -1,11 +1,19 @@
 import { Request, Response } from 'express';
-import { IUser } from '../models/userModel';
+import userModel, { IUser } from '../models/userModel';
 import UserService from '../services/userService';
 import ChatService from '../services/chatService';
+import chatModel from '../models/chatModel';
+import { ObjectId } from 'mongodb';
 
 interface IChatControllerCreateRequest extends Request {
    body: {
       users: [IUser, IUser];
+   };
+}
+interface IChatSearchChatByUserRequest extends Request {
+   query: {
+      text: string;
+      userId: string;
    };
 }
 
@@ -38,6 +46,15 @@ class chatController {
       const { userId } = req.params;
       const chats = await ChatService.getChatsByUserId(userId);
       res.json({
+         message: 'Chats is found',
+         chats,
+      });
+   }
+
+   async searchChats(req: IChatSearchChatByUserRequest, res: Response) {
+      const { text, userId } = req.query;
+      const chats = await ChatService.searchChats(userId, text);
+      return res.json({
          message: 'Chats is found',
          chats,
       });
