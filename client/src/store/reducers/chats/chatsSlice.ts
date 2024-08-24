@@ -3,12 +3,12 @@ import { IChat } from '../../../utils/interfaces';
 
 interface IChatsState {
    chats: IChat[];
-   isChatsPreloading: boolean;
+   isChatsLoading: boolean;
 }
 
 const initialState: IChatsState = {
    chats: [],
-   isChatsPreloading: true,
+   isChatsLoading: false,
 };
 
 export const chatsSlice = createSlice({
@@ -16,10 +16,18 @@ export const chatsSlice = createSlice({
    initialState,
    reducers: {
       getChatsStart(state) {
-         state.isChatsPreloading = true;
+         state.isChatsLoading = true;
       },
       getChats(state, action: PayloadAction<IChat[]>) {
-         state.isChatsPreloading = false;
+         state.isChatsLoading = false;
+         state.chats = action.payload;
+      },
+
+      getChatsBySearchTextStart(state) {
+         state.isChatsLoading = true;
+      },
+      getChatsBySearchText(state, action: PayloadAction<IChat[]>) {
+         state.isChatsLoading = false;
          state.chats = action.payload;
       },
    },
