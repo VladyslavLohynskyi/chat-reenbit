@@ -6,6 +6,8 @@ import {
    getAllUserChats,
    getAllUserChatsBySearchText,
 } from '../../../../../store/reducers/chats/chatActionCreatores';
+import { Button } from '../../../Button';
+import { ButtonClassEnum } from '../../../../../utils/enums';
 
 function AsideHeader() {
    const dispatch = useAppDispatch();
@@ -37,6 +39,7 @@ function AsideHeader() {
             type='text'
             placeholder='Enter the chat name'
          />
+         <Button buttonClass={ButtonClassEnum.ADD} text='Add chat' />
       </div>
    );
 }

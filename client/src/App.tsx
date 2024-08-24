@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import './App.scss';
+
 import { useAppDispatch, useAppSelector } from './hooks/redux';
-import Main from './modules/Main/Main';
-import { getAllUserChats } from './store/reducers/chats/chatActionCreatores';
 import { getUserInfoById } from './store/reducers/user/userActionCreatores';
+import { getAllUserChats } from './store/reducers/chats/chatActionCreatores';
+import Main from './modules/Main/Main';
 
 function App() {
    const dispatch = useAppDispatch();
-   const { isChatsLoading } = useAppSelector((state) => state.chatsReducer);
    const { isUserLoading } = useAppSelector((state) => state.userReducer);
    useEffect(() => {
       dispatch(getUserInfoById('66c606e525213df4f211ad29'));
