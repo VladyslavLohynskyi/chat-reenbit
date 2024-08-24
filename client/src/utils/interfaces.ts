@@ -6,8 +6,8 @@ export interface IUser {
 
 export interface IChat {
    _id: string;
-   user1: IUser;
-   user2: IUser;
+   user1: IUser[];
+   user2: IUser[];
 }
 
 export interface IBasisResponse {
