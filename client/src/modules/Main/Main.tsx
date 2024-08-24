@@ -1,9 +1,10 @@
+import Aside from '../ui/Aside/Aside';
 import './Main.scss';
 
 function Main() {
    return (
       <div className='main max-width'>
-         <div className='aside'>aside</div>
+         <Aside />
          <div className='chat'>chat</div>
       </div>
    );
