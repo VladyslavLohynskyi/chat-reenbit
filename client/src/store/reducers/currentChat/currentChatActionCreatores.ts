@@ -17,3 +17,7 @@ export const sendMessage =
       const data = await MessageReq.sendMessage(chatId, userId, content);
       dispatch(currentChatSlice.actions.sendMessage(data.messageInfo));
    };
+
+export const clearCurrentChat = () => (dispatch: AppDispatch) => {
+   dispatch(currentChatSlice.actions.clearChat());
+};

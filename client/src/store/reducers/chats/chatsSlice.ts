@@ -38,6 +38,16 @@ export const chatsSlice = createSlice({
          state.chats = [...state.chats, action.payload];
          state.isChatsLoading = false;
       },
+
+      deleteChatStart(state) {
+         state.isChatsLoading = true;
+      },
+      deleteChat(state, action: PayloadAction<IChat>) {
+         state.chats = state.chats.filter(
+            (chat) => chat._id !== action.payload._id,
+         );
+         state.isChatsLoading = false;
+      },
    },
 });
 
