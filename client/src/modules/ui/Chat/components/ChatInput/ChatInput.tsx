@@ -5,6 +5,7 @@ import { Button } from '../../../Button';
 import { Input } from '../../../Input';
 import './ChatInput.scss';
 import { sendMessage } from '../../../../../store/reducers/currentChat/currentChatActionCreatores';
+import { getRandomText } from '../../../../../http';
 
 const ChatInput: React.FC = () => {
    const dispatch = useAppDispatch();
@@ -16,11 +17,23 @@ const ChatInput: React.FC = () => {
    ) => {
       setContent(e.target.value);
    };
-   const handleSubmitMessage = (e: React.FormEvent<HTMLFormElement>) => {
+   const handleSubmitMessage = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (content.length > 0 && user && chat) {
          setContent('');
-         dispatch(sendMessage(chat?._id, user?._id, content));
+         await dispatch(sendMessage(chat._id, user._id, content));
+         const randomText = await getRandomText();
+         setTimeout(() => {
+            dispatch(
+               sendMessage(
+                  chat._id,
+                  user._id !== chat.user1[0]._id
+                     ? chat.user1[0]._id
+                     : chat.user2[0]._id,
+                  randomText,
+               ),
+            );
+         }, 3000);
       }
    };
    return (

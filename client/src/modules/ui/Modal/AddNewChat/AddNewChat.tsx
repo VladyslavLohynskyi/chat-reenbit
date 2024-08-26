@@ -44,12 +44,14 @@ export const AddNewChat: React.FC<AddNewChatType> = ({ onClose }) => {
             value={name}
             type='text'
             placeholder='Enter name'
+            required={true}
          />
          <Input
             value={surname}
             onChange={handleChangeSurname}
             type='text'
             placeholder='Enter surname'
+            required={true}
          />
          <div className='add-new-chat__buttons-container'>
             <Button

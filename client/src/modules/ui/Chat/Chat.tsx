@@ -20,7 +20,9 @@ function Chat() {
             <>
                <ChatHeader />
                <div className='chat__main'>
-                  {messages?.map((message) => <Message message={message} />)}
+                  {messages?.map((message) => (
+                     <Message key={message._id} message={message} />
+                  ))}
                </div>
                <ChatInput />
             </>
