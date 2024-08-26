@@ -1,12 +1,15 @@
+
 import { useAppSelector } from '../../../hooks/redux';
 import './Aside.scss';
 import AsideChatPreview from './components/AsideChatPreview/AsideChatPreview';
 import AsideHeader from './components/AsideHeader/AsideHeader';
 
+
 function Aside() {
    const { isChatsLoading, chats } = useAppSelector(
       (state) => state.chatsReducer,
    );
+
    return (
       <div className='aside'>
          <AsideHeader />
