@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IChat, IMessage } from '../../../utils/interfaces';
+import { IChat, IMessage, IUser } from '../../../utils/interfaces';
 
 interface IUserState {
    chat: null | IChat;
@@ -34,6 +34,25 @@ export const currentChatSlice = createSlice({
       clearChat(state) {
          state.chat = null;
          state.messages = null;
+      },
+      updateChatStart(state) {
+         state.isCurrentChatLoading = true;
+      },
+      updateChat(state, action: PayloadAction<IUser>) {
+         if (state.chat) {
+            state.chat = {
+               ...state.chat,
+               user1:
+                  state.chat.user1[0]._id === action.payload._id
+                     ? [action.payload]
+                     : state.chat.user1,
+               user2:
+                  state.chat.user2[0]._id === action.payload._id
+                     ? [action.payload]
+                     : state.chat.user2,
+            };
+         }
+         state.isCurrentChatLoading = false;
       },
    },
 });
