@@ -1,13 +1,14 @@
 import { useAppSelector } from '../../hooks/redux';
 import Aside from '../ui/Aside/Aside';
+import Chat from '../ui/Chat/Chat';
 import './Main.scss';
 
 function Main() {
    return (
-      <div className='main max-width'>
+      <main className='main max-width'>
          <Aside />
-         <div className='chat'>chat</div>
-      </div>
+         <Chat />
+      </main>
    );
 }
 
