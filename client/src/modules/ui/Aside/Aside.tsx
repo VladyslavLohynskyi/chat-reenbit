@@ -1,9 +1,7 @@
-
 import { useAppSelector } from '../../../hooks/redux';
 import './Aside.scss';
 import AsideChatPreview from './components/AsideChatPreview/AsideChatPreview';
 import AsideHeader from './components/AsideHeader/AsideHeader';
-
 
 function Aside() {
    const { isChatsLoading, chats } = useAppSelector(
@@ -11,7 +9,7 @@ function Aside() {
    );
 
    return (
-      <div className='aside'>
+      <aside className='aside'>
          <AsideHeader />
          {isChatsLoading ? (
             <p>Loading...</p>
@@ -22,7 +20,7 @@ function Aside() {
                ))}
             </div>
          )}
-      </div>
+      </aside>
    );
 }
 
