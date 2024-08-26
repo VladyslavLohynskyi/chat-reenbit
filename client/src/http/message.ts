@@ -5,9 +5,9 @@ interface IGetChatMessagesResponse extends IBasisResponse {
 }
 class MessageReq {
    getMessageByChatId = async (chatId: string) => {
-      const { data } = await $host.get<IGetChatMessagesResponse>('/message/', {
-         params: { chatId },
-      });
+      const { data } = await $host.get<IGetChatMessagesResponse>(
+         '/message/' + chatId,
+      );
       return data;
    };
 }

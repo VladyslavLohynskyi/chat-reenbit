@@ -10,7 +10,7 @@ interface IUserState {
 const initialState: IUserState = {
    chat: null,
    messages: null,
-   isCurrentChatLoading: true,
+   isCurrentChatLoading: false,
 };
 
 export const currentChatSlice = createSlice({
