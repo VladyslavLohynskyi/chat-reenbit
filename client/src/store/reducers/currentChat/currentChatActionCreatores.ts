@@ -1,6 +1,7 @@
 import { AppDispatch } from '../../store';
 import { currentChatSlice } from './currentChatSlice';
 import MessageReq from '../../../http/message';
+import UserReq from '../../../http/user';
 import { IChat } from '../../../utils/interfaces';
 
 export const getChat = (chat: IChat) => async (dispatch: AppDispatch) => {
@@ -21,3 +22,13 @@ export const sendMessage =
 export const clearCurrentChat = () => (dispatch: AppDispatch) => {
    dispatch(currentChatSlice.actions.clearChat());
 };
+
+export const updateUserInfoInChat =
+   (userId: string, name: string, surname: string) =>
+   async (dispatch: AppDispatch) => {
+      dispatch(currentChatSlice.actions.updateChatStart());
+      await UserReq.updateUserInfo(userId, name, surname);
+      dispatch(
+         currentChatSlice.actions.updateChat({ _id: userId, name, surname }),
+      );
+   };

@@ -6,4 +6,10 @@
    padding: 10px;
    font-weight: 600;
    height: 50px;
+   &__buttons-container {
+      display: flex;
+      & button {
+         margin-left: 10px;
+      }
+   }
 }
