@@ -1,6 +1,7 @@
 import { useAppSelector } from '../../../hooks/redux';
 import './Chat.scss';
 import ChatHeader from './components/ChatHeader/ChatHeader';
+import ChatInput from './components/ChatInput/ChatInput';
 import Message from './components/Message/Message';
 
 function Chat() {
@@ -21,6 +22,7 @@ function Chat() {
                <div className='chat__main'>
                   {messages?.map((message) => <Message message={message} />)}
                </div>
+               <ChatInput />
             </>
          )}
       </section>

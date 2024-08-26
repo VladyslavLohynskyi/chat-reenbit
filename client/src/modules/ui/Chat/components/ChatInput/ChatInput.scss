@@ -1,0 +1,9 @@
+.chat-input {
+   display: flex;
+   background-color: lightgrey;
+   padding: 20px 10px 10px 10px;
+   & button {
+      height: 28px;
+      margin: 0 0 0 5px;
+   }
+}
