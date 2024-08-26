@@ -5,12 +5,14 @@ interface IUserState {
    chat: null | IChat;
    messages: null | IMessage[];
    isCurrentChatLoading: boolean;
+   message: string;
 }
 
 const initialState: IUserState = {
    chat: null,
    messages: null,
    isCurrentChatLoading: false,
+   message: '',
 };
 
 export const currentChatSlice = createSlice({
@@ -30,6 +32,7 @@ export const currentChatSlice = createSlice({
       },
       sendMessage(state, action: PayloadAction<IMessage>) {
          state.messages = [...(state.messages || []), action.payload];
+         state.message = action.payload.content;
       },
       clearChat(state) {
          state.chat = null;
@@ -53,6 +56,9 @@ export const currentChatSlice = createSlice({
             };
          }
          state.isCurrentChatLoading = false;
+      },
+      clearMessage(state) {
+         state.message = '';
       },
    },
 });

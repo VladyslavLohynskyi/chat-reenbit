@@ -32,3 +32,7 @@ export const updateUserInfoInChat =
          currentChatSlice.actions.updateChat({ _id: userId, name, surname }),
       );
    };
+
+export const clearMessage = () => (dispatch: AppDispatch) => {
+   dispatch(currentChatSlice.actions.clearMessage());
+};
