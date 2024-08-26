@@ -19,16 +19,24 @@ export const chatsSlice = createSlice({
          state.isChatsLoading = true;
       },
       getChats(state, action: PayloadAction<IChat[]>) {
-         state.isChatsLoading = false;
          state.chats = action.payload;
+         state.isChatsLoading = false;
       },
 
       getChatsBySearchTextStart(state) {
          state.isChatsLoading = true;
       },
       getChatsBySearchText(state, action: PayloadAction<IChat[]>) {
-         state.isChatsLoading = false;
          state.chats = action.payload;
+         state.isChatsLoading = false;
+      },
+
+      addChatStart(state) {
+         state.isChatsLoading = true;
+      },
+      addChat(state, action: PayloadAction<IChat>) {
+         state.chats = [...state.chats, action.payload];
+         state.isChatsLoading = false;
       },
    },
 });

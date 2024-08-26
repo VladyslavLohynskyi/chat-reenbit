@@ -4,7 +4,6 @@ import { IAsideChatPreviewType } from './AsideChatPreviewType';
 
 const AsideChatPreview: React.FC<IAsideChatPreviewType> = ({ chat }) => {
    const { user } = useAppSelector((state) => state.userReducer);
-
    return (
       <div className='aside-chat-preview'>
          <p>

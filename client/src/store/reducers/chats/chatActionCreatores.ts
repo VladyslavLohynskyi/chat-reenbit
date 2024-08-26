@@ -1,6 +1,7 @@
 import { AppDispatch } from '../../store';
 import { chatsSlice } from './chatsSlice';
 import ChatReq from '../../../http/chat';
+import { IUser } from '../../../utils/interfaces';
 
 export const getAllUserChats =
    (userId: string) => async (dispatch: AppDispatch) => {
@@ -14,4 +15,11 @@ export const getAllUserChatsBySearchText =
       dispatch(chatsSlice.actions.getChatsBySearchTextStart());
       const data = await ChatReq.searchChats(userId, text);
       dispatch(chatsSlice.actions.getChatsBySearchText(data.chats));
+   };
+
+export const addNewChat =
+   (users: [IUser, IUser]) => async (dispatch: AppDispatch) => {
+      dispatch(chatsSlice.actions.addChatStart());
+      const data = await ChatReq.addChat(users);
+      dispatch(chatsSlice.actions.addChat(data.chat));
    };

@@ -3,7 +3,6 @@ import './App.scss';
 
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { getUserInfoById } from './store/reducers/user/userActionCreatores';
-import { getAllUserChats } from './store/reducers/chats/chatActionCreatores';
 import Main from './modules/Main/Main';
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
    const { isUserLoading } = useAppSelector((state) => state.userReducer);
    useEffect(() => {
       dispatch(getUserInfoById('66c606e525213df4f211ad29'));
-      dispatch(getAllUserChats('66c606e525213df4f211ad29'));
    }, []);
    return (
       <div className='app'>{isUserLoading ? <p>Loading...</p> : <Main />}</div>

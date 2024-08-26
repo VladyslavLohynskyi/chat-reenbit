@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
-import userModel, { IUser } from '../models/userModel';
+import { IUser } from '../models/userModel';
 import UserService from '../services/userService';
 import ChatService from '../services/chatService';
-import chatModel from '../models/chatModel';
-import { ObjectId } from 'mongodb';
 
 interface IChatControllerCreateRequest extends Request {
    body: {
@@ -28,8 +26,7 @@ class chatController {
       );
       return res.json({
          message: 'Chat created',
-         users: [user1, user2],
-         chat,
+         chat: { _id: chat._id, user1: [user1], user2: [user2] },
       });
    }
 
