@@ -31,6 +31,10 @@ export const currentChatSlice = createSlice({
       sendMessage(state, action: PayloadAction<IMessage>) {
          state.messages = [...(state.messages || []), action.payload];
       },
+      clearChat(state) {
+         state.chat = null;
+         state.messages = null;
+      },
    },
 });
 

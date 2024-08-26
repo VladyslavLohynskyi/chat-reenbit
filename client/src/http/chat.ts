@@ -6,6 +6,10 @@ interface IGetChatsResponse extends IBasisResponse {
 interface IAddChatResponse extends IBasisResponse {
    chat: IChat;
 }
+
+interface IDeleteChatResponse extends IBasisResponse {
+   chat: IChat;
+}
 class ChatReq {
    getChats = async (userId: string) => {
       const { data } = await $host.get<IGetChatsResponse>('/chat/' + userId);
@@ -22,6 +26,13 @@ class ChatReq {
       const { data } = await $host.post<IAddChatResponse>('/chat/', {
          users,
       });
+      return data;
+   };
+
+   deleteChat = async (chatId: string) => {
+      const { data } = await $host.delete<IDeleteChatResponse>(
+         '/chat/' + chatId,
+      );
       return data;
    };
 }

@@ -23,3 +23,9 @@ export const addNewChat =
       const data = await ChatReq.addChat(users);
       dispatch(chatsSlice.actions.addChat(data.chat));
    };
+
+export const deleteChat = (chatId: string) => async (dispatch: AppDispatch) => {
+   dispatch(chatsSlice.actions.deleteChatStart());
+   const data = await ChatReq.deleteChat(chatId);
+   dispatch(chatsSlice.actions.deleteChat(data.chat));
+};
