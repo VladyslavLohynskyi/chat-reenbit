@@ -1,0 +1,29 @@
+.modal-alert {
+   &__container {
+      position: fixed;
+
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      display: flex;
+      height: 50px;
+      align-items: center;
+      z-index: 33333;
+   }
+
+   &__content {
+      display: flex;
+      border-radius: 6px;
+      height: 80%;
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #4d5250;
+      background-color: #5d6461;
+      & p {
+         margin: 0;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+      }
+   }
+}

@@ -1,0 +1,21 @@
+.message {
+   border: 1px solid grey;
+   border-radius: 10px;
+   margin: 5px 0;
+   padding: 5px;
+   background-color: lightgray;
+   max-width: 45%;
+   width: fit-content;
+   & p {
+      font-size: 12px;
+      line-height: 1.5;
+   }
+
+   &__right {
+      align-self: flex-end;
+   }
+
+   &__left {
+      align-self: flex-start;
+   }
+}

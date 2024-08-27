@@ -1,0 +1,18 @@
+.aside-header {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 100%;
+   min-width: 200px;
+   background-color: lightgray;
+   padding: 10px;
+
+   &__user-name {
+      margin-bottom: 10px;
+      font-size: 14px;
+
+      & span {
+         font-weight: 600;
+      }
+   }
+}

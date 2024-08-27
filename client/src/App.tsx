@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import './App.scss';
+
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { getUserInfoById } from './store/reducers/user/userActionCreatores';
+import Main from './modules/Main/Main';
+import Alert from './modules/ui/Alert/Alert';
+import { clearMessage } from './store/reducers/currentChat/currentChatActionCreatores';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const dispatch = useAppDispatch();
+   const { isUserLoading } = useAppSelector((state) => state.userReducer);
+   const { message } = useAppSelector((state) => state.currentChatReducer);
+   const [showAlertNotification, setShowAlertNotification] =
+      useState<boolean>(false);
+   useEffect(() => {
+      dispatch(getUserInfoById('66c606e525213df4f211ad29'));
+   }, []);
+
+   useEffect(() => {
+      if (message.length > 0) {
+         setShowAlertNotification(true);
+      }
+   }, [message]);
+
+   return (
+      <div className='app'>
+         {isUserLoading ? (
+            <p>Loading...</p>
+         ) : (
+            <>
+               <Main />
+               <Alert
+                  show={showAlertNotification}
+                  onClose={() => {
+                     setShowAlertNotification(false);
+                     dispatch(clearMessage());
+                  }}
+                  message={message}
+               />
+            </>
+         )}
+      </div>
+   );
 }
 
 export default App;
